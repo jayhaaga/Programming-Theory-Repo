@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MinY: -10
   m_Speed: 1
-  m_Score: 0
-  player: {fileID: 0}
+  m_Score: 10
+  m_Player: {fileID: 0}
 --- !u!54 &2257660951916639365
 Rigidbody:
   m_ObjectHideFlags: 0

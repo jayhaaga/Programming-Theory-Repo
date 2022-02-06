@@ -8,14 +8,22 @@ public class Enemy : MonoBehaviour
     protected float m_Speed = 1f;
     [SerializeField]
     protected int m_Score = 0;
-    [SerializeField]
-    protected GameObject player;
+    protected GameObject m_Player;
     protected Rigidbody m_Rb;
-    public virtual void Move() 
+    protected virtual void Start()
+    {
+        m_Rb = GetComponent<Rigidbody>();
+        m_Player = GameObject.Find("Player");
+    }
+    protected virtual void Update()
+    {
+        Move();
+    }
+    protected virtual void Move() // ABSTRACTION
     {
         CheckBoundary();
     }
-    protected void CheckBoundary()
+    protected void CheckBoundary() // ABSTRACTION
     {
         if (transform.position.y < m_MinY)
         {
@@ -23,9 +31,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected Vector3 GetTargetDirection()
+    protected Vector3 GetTargetDirection() // ABSTRACTION
     {
-        Vector3 targetDirection = player.transform.position - transform.position;
+        Vector3 targetDirection = m_Player.transform.position - transform.position;
         targetDirection.y = 0f;
         return targetDirection.normalized;
     }

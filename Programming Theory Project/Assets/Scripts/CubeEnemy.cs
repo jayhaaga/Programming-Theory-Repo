@@ -2,22 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeEnemy : ClunkyEnemy
+public class CubeEnemy : ClunkyEnemy // INHERITANCE
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_Rb = GetComponent<Rigidbody>();
-        m_Score = 50;
-        InvokeRepeating("Move", 0, m_MoveRate);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public override void Move()
+    protected override void Move() // POLYMORPHISM
     {
         Vector3 targetDirection = GetTargetDirection();
         if(Mathf.Abs(targetDirection.x) > Mathf.Abs(targetDirection.z))

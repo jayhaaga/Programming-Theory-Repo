@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance { get; private set; }
     private int m_Score;
     private int m_HighScore;
-    public int HighScore { get; }
+    public int HighScore { get; } // ENCAPSULATION
     public int Score
     {
         get
@@ -36,13 +36,13 @@ public class MainManager : MonoBehaviour
     {
         public int Score;
     }
-    public void SaveHighScore()
+    public void SaveHighScore() // ABSTRACTION
     {
         SaveData data = new SaveData();
         data.Score = m_HighScore;
         File.WriteAllText(Application.persistentDataPath + "/savedata.json", JsonUtility.ToJson(data));
     }
-    public void LoadHighScore()
+    public void LoadHighScore() // ABSTRACTION
     {
         string path = Application.persistentDataPath + "/savedata.json";
         if(File.Exists(path))

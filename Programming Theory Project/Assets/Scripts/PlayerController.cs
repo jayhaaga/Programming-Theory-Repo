@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRb;
+    private Rigidbody m_PlayerRb;
     [SerializeField]
-    private float speed = 3.0f;
+    private float m_Speed = 3.0f;
     [SerializeField]
-    private float jumpForce = 50.0f;
-    private bool isOnGround;
+    private float m_JumpForce = 300.0f;
+    private bool m_IsOnGround;
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+        m_PlayerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -25,28 +25,28 @@ public class PlayerController : MonoBehaviour
     }
     private void Move(float horizontal, float vertical)
     {
-        if (isOnGround)
+        if (m_IsOnGround)
         {
-            playerRb.AddForce(new Vector3(horizontal, 0, vertical) * speed);
+            m_PlayerRb.AddForce(new Vector3(horizontal, 0, vertical) * m_Speed);
         }
     }
     private void Jump()
     {
-        if (isOnGround)
+        if (m_IsOnGround)
         {
-            isOnGround = false;
-            playerRb.AddForce(new Vector3(0, jumpForce, 0));
+            m_IsOnGround = false;
+            m_PlayerRb.AddForce(new Vector3(0, m_JumpForce, 0));
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isOnGround = true;
+            m_IsOnGround = true;
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            //add me
+            //Lose health response
         }
     }
 }

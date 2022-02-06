@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MinY: -10
   m_Speed: 1
-  m_Score: 0
-  player: {fileID: 0}
+  m_Score: 30
+  m_Player: {fileID: 0}
   m_MoveRate: 2
   m_SpeedScale: 150
 --- !u!54 &4942471133224679519

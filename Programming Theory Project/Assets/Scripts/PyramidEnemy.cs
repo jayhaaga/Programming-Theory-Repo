@@ -2,28 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PyramidEnemy : ClunkyEnemy
+public class PyramidEnemy : ClunkyEnemy // INHERITANCE
 {
-    private MeshFilter meshFilter;
+    private MeshFilter m_MeshFilter;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        m_Rb = GetComponent<Rigidbody>();
-        m_Score = 25;
-        InvokeRepeating("Move", 0, m_MoveRate);
-        meshFilter = GetComponent<MeshFilter>();
+        base.Start();
+        m_MeshFilter = GetComponent<MeshFilter>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public override void Move()
+    protected override void Move() // POLYMORPHISM
     {
         Vector3 targetDirection = GetTargetDirection(), bestNorm = new Vector3(0, -1, 0);
         float bestNormVal = 0f;
-        foreach (Vector3 norm in meshFilter.mesh.normals)
+        foreach (Vector3 norm in m_MeshFilter.mesh.normals)
         {
             float val = Vector3.Dot(transform.TransformVector(norm), targetDirection);
             if (val > bestNormVal)
